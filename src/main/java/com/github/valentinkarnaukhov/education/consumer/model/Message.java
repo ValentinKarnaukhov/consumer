@@ -16,6 +16,7 @@ public class Message {
 
     private UUID uuid;
     private UUID companyUuid;
+    private UUID userUuid;
     private String text;
     private Instant timestamp;
 

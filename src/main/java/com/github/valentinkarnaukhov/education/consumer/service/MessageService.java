@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -22,7 +21,12 @@ public class MessageService {
 
     @Transactional
     public UUID saveMessage(MessageEvent messageEvent) {
-        Message savedMessage = saveMessage(messageEvent.getCompanyUuid(), messageEvent.getText(), messageEvent.getTimestamp());
+        Message savedMessage = saveMessage(
+                messageEvent.getCompanyUuid(),
+                messageEvent.getUserUuid(),
+                messageEvent.getText(),
+                messageEvent.getTimestamp()
+        );
         return savedMessage.getUuid();
     }
 
@@ -32,9 +36,10 @@ public class MessageService {
                 .collect(Collectors.toList());
     }
 
-    private Message saveMessage(UUID companyUuid, String text, Instant timestamp) {
+    private Message saveMessage(UUID companyUuid, UUID userUuid, String text, Instant timestamp) {
         Message message = new Message();
         message.setUuid(UUID.randomUUID());
+        message.setUserUuid(userUuid);
         message.setText(text);
         message.setCompanyUuid(companyUuid);
         message.setTimestamp(timestamp);
