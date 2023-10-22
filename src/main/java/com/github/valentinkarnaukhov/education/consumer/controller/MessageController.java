@@ -11,15 +11,14 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/messages")
+@RequestMapping("/api/v1/message")
 public class MessageController {
 
     private final MessageService messageService;
 
     @GetMapping
-    public List<MessageDto.MessageGetResponse> getMessagesByParameter(MessageDto.MessageGetRequest searchParameters){
+    public List<MessageDto.MessageGetResponse> getMessagesByParameter(MessageDto.MessageGetRequest searchParameters) {
         return messageService.getMessages(searchParameters);
     }
-
 
 }

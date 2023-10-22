@@ -1,7 +1,7 @@
 package com.github.valentinkarnaukhov.education.consumer.listener;
 
+import com.github.valentinkarnaukhov.education.consumer.dto.MessageEvent;
 import com.github.valentinkarnaukhov.education.consumer.service.MessageService;
-import com.github.valentinkarnaukhov.education.kafkastarter.event.MessageEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.annotation.KafkaListener;

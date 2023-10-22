@@ -1,12 +1,11 @@
 package com.github.valentinkarnaukhov.education.consumer.service;
 
 import com.github.valentinkarnaukhov.education.consumer.dto.MessageDto;
+import com.github.valentinkarnaukhov.education.consumer.dto.MessageEvent;
 import com.github.valentinkarnaukhov.education.consumer.model.Message;
 import com.github.valentinkarnaukhov.education.consumer.repository.MessageRepository;
-import com.github.valentinkarnaukhov.education.kafkastarter.event.MessageEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
@@ -19,9 +18,8 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
 
-    @Transactional
     public UUID saveMessage(MessageEvent messageEvent) {
-        Message savedMessage = saveMessage(
+        Message savedMessage = this.saveMessage(
                 messageEvent.getCompanyUuid(),
                 messageEvent.getUserUuid(),
                 messageEvent.getText(),
